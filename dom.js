@@ -99,12 +99,15 @@ function afegirFormSugeriments(){
     let body = document.querySelector('body');
     let form = document.createElement('form');
     let input = document.createElement('input');
+    let btn = document.createElement('button');
+    btn.textContent = 'Suggerir 🤔';
+    btn.id = 'sug';
     input.type = 'text';
     input.id = 'sugeriment';
     input.placeholder = 'Suggeriments';
     form.appendChild(input);
+    form.appendChild(btn);
     body.appendChild(form);
-    
 }
 
 //Afegeix els suggeriments a una llista mostrada a la pàgina
