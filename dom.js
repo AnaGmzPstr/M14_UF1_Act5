@@ -7,13 +7,20 @@ function init(){
     //Exercici 2
     crearDiv();
     modificarDiv();
+
+    //exercici 3
+    createForm();
+    mostrarText();
+
+    //Exercici 4
+    afegirFormSugeriments();
 }
 
 //PArt 1: Accés i modificació d'elements del DOM
 //Exercici 1
 //Canviar el contingut del títol
 function cambiarTitulo(){
-    return document.querySelector('h1').textContent = 'Hello, world! 🤠';
+    return document.querySelector('h1').textContent = 'Hello, world! 🩷';
 }
 
 //Afegir un nou element a la llista
@@ -57,12 +64,51 @@ function modificarDiv(){
 
 //Exercici 3
 //Crear un formulari amb un camp de text i un botó d'enviament
+function createForm(){
+    let body = document.querySelector('body');
+    let nouForm = document.createElement('form');
+    let nouInput = document.createElement('input');
+    nouInput.type = 'text';
+    nouInput.id = 'inputText';
+    nouInput.placeholder = 'Escriu el que vulguis';
+    let nouButton = document.createElement('button');
+    nouButton.id = 'enviar';
+    nouButton.textContent = 'Enviar ➡️';
+    nouForm.appendChild(nouInput);
+    nouForm.appendChild(nouButton);
+    body.appendChild(nouForm);
+}
 
-//Quan l'usuari esqrigui text i faci click al botó, mostra el text que ha introduït dins d'un nou element p
+//Quan l'usuari escrigui text i faci click al botó, mostra el text que ha introduït dins d'un nou element p
+function mostrarText(){
+    let body = document.querySelector('body');
+    let boto = document.getElementById('enviar');
+    boto.addEventListener('click', (event)=>{
+        event.preventDefault();
+        let textIntro = document.getElementById('inputText').value;
+        let nouParagraf=document.createElement('p');
+        nouParagraf.textContent=textIntro;
+        body.appendChild(nouParagraf);
+        textIntro.textContent = "";
+    });
+}
 
 //Exercici 4: Creació dinàmica d'elements
 //Afegeix un formulari amb un camp de text per introduir suggeriments
+function afegirFormSugeriments(){
+    let body = document.querySelector('body');
+    let form = document.createElement('form');
+    let input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'sugeriment';
+    input.placeholder = 'Suggeriments';
+    form.appendChild(input);
+    body.appendChild(form);
+    
+}
 
 //Afegeix els suggeriments a una llista mostrada a la pàgina
 
 //Cada suggeriment ha de tenir un botó per marcar-lo com realitzat (canviar estil) i un botó per eliminar-lo
+
+init();
