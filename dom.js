@@ -91,7 +91,6 @@ function mostrarText(){
         event.preventDefault();
         let textIntro = document.getElementById('inputText').value;
         paragraf.textContent=textIntro;
-        body.appendChild(nouParagraf);
         textIntro.textContent = "";
     });
 }
@@ -151,5 +150,3 @@ function afegirBotonsSugeriments(li){
         li.style.color = 'grey';
     });
 }
-
-init();
