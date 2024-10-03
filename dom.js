@@ -14,6 +14,7 @@ function init(){
 
     //Exercici 4
     afegirFormSugeriments();
+    mostrarSugeriments();
 }
 
 //PArt 1: Accés i modificació d'elements del DOM
@@ -68,6 +69,8 @@ function createForm(){
     let body = document.querySelector('body');
     let nouForm = document.createElement('form');
     let nouInput = document.createElement('input');
+    let nouParagraf=document.createElement('p');
+    nouParagraf.id = 'paragraf'
     nouInput.type = 'text';
     nouInput.id = 'inputText';
     nouInput.placeholder = 'Escriu el que vulguis';
@@ -76,18 +79,18 @@ function createForm(){
     nouButton.textContent = 'Enviar ➡️';
     nouForm.appendChild(nouInput);
     nouForm.appendChild(nouButton);
+    nouForm.appendChild(nouParagraf);
     body.appendChild(nouForm);
 }
 
 //Quan l'usuari escrigui text i faci click al botó, mostra el text que ha introduït dins d'un nou element p
 function mostrarText(){
-    let body = document.querySelector('body');
+    let paragraf = document.getElementById('paragraf')
     let boto = document.getElementById('enviar');
     boto.addEventListener('click', (event)=>{
         event.preventDefault();
         let textIntro = document.getElementById('inputText').value;
-        let nouParagraf=document.createElement('p');
-        nouParagraf.textContent=textIntro;
+        paragraf.textContent=textIntro;
         body.appendChild(nouParagraf);
         textIntro.textContent = "";
     });
@@ -100,6 +103,8 @@ function afegirFormSugeriments(){
     let form = document.createElement('form');
     let input = document.createElement('input');
     let btn = document.createElement('button');
+    let div = document.createElement('div');
+    div.id = 'llista';
     btn.textContent = 'Suggerir 🤔';
     btn.id = 'sug';
     input.type = 'text';
@@ -107,11 +112,44 @@ function afegirFormSugeriments(){
     input.placeholder = 'Suggeriments';
     form.appendChild(input);
     form.appendChild(btn);
+    form.appendChild(div);
     body.appendChild(form);
 }
 
 //Afegeix els suggeriments a una llista mostrada a la pàgina
+function mostrarSugeriments(){
+    let llista = document.getElementById('llista');
+    let boto = document.getElementById('sug');
+    boto.addEventListener('click', (event)=>{
+        event.preventDefault();
+        let suggeriment = document.getElementById('sugeriment').value;
+        let nouLi = document.createElement('li');
+        nouLi.textContent = suggeriment;
+        llista.appendChild(nouLi);
+        suggeriment.textContent = "";
+        afegirBotonsSugeriments(nouLi)
+    });
+}
 
 //Cada suggeriment ha de tenir un botó per marcar-lo com realitzat (canviar estil) i un botó per eliminar-lo
+function afegirBotonsSugeriments(li){
+    let btnEliminar = document.createElement('button');
+    btnEliminar.textContent = 'Eliminar';
+    btnEliminar.id = 'eliminar';
+    let btnRealitzat = document.createElement('button');
+    btnRealitzat.textContent = 'Realitzat';
+    btnRealitzat.id = 'realitzat';
+    li.appendChild(btnEliminar);
+    li.appendChild(btnRealitzat);
+    btnEliminar.addEventListener('click', (event)=>{
+        event.preventDefault();
+        li.remove();
+    });
+    btnRealitzat.addEventListener('click', (event)=>{
+        event.preventDefault();
+        li.style.textDecoration = 'line-through';
+        li.style.color = 'grey';
+    });
+}
 
 init();
