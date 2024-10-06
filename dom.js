@@ -146,7 +146,14 @@ function afegirBotonsSugeriments(li){
     });
     btnRealitzat.addEventListener('click', (event)=>{
         event.preventDefault();
-        li.style.textDecoration = 'line-through';
-        li.style.color = 'grey';
+        if (li.style.textDecoration === 'line-through'){
+            li.style.textDecoration = 'none';
+            li.style.color = 'black';
+            btnRealitzat.textContent = 'Realitzat';
+        } else {
+            li.style.textDecoration = 'line-through';
+            li.style.color = 'grey';
+            btnRealitzat.textContent = 'Desfer';
+        }
     });
 }
